@@ -113,7 +113,6 @@ class DB2Connection extends Connection
         }
 
         return $this->withTablePrefix($defaultGrammar);
-        return $this;
     }
 
     /**
@@ -154,7 +153,7 @@ class DB2Connection extends Connection
         return $defaultProcessor;
     }
 
-    public function withTablePrefix(\RbSerin\DB2\Database\Schema\Grammars\DB2Grammar $grammar)
+    public function withTablePrefix(\Illuminate\Database\Grammar $grammar)
     {
         $grammar->setTablePrefix($this->tablePrefix);
 

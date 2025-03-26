@@ -48,20 +48,19 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint
      * @param  \Illuminate\Database\Schema\Grammars\Grammar  $grammar
      * @return array
      */
-    public function toSql(Connection $connection, Grammar $grammar)
+    public function toSql()
     {
-        $this->addReplyListEntryCommands($connection);
+        $this->addReplyListEntryCommands();
 
-        return parent::toSql($connection, $grammar);
+        return parent::toSql();
     }
 
     /**
      * Add the commands that are necessary to DROP and Rename statements on IBMi.
      *
-     * @param  \Illuminate\Database\Connection  $connection
      * @return void
      */
-    protected function addReplyListEntryCommands(Connection $connection)
+    protected function addReplyListEntryCommands()
     {
         if ($this->commandsNamed(['dropColumn', 'renameColumn'])->count() > 0) {
             array_unshift($this->commands, $this->createCommand('addReplyListEntry'), $this->createCommand('changeJob'));

@@ -63,8 +63,8 @@ class DB2Grammar extends Grammar
     {
         //return 'select * from information_schema.tables where table_schema = upper(?) and table_name = upper(?)';
         return sprintf(
-            'select 1 from information_schema.tables where '
-                . "table_schema = %s and table_name = %s and table_type in ('BASE TABLE', 'SYSTEM VERSIONED') as `exists`",
+            'select 1 as "exists" from information_schema.tables where '
+                . "table_schema = upper(%s) and table_name = upper(%s) and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')",
             $schema ? $this->quoteString($schema) : 'schema()',
             $this->quoteString($table)
         );
@@ -89,7 +89,7 @@ class DB2Grammar extends Grammar
      *
      * @return string
      */
-    public function compileCreate(Blueprint $blueprint, Fluent $command, Connection $connection)
+    public function compileCreate(Blueprint $blueprint, Fluent $command)
     {
         $columns = implode(', ', $this->getColumns($blueprint));
         $sql = 'create table ' . $this->wrapTable($blueprint);
@@ -473,7 +473,7 @@ class DB2Grammar extends Grammar
      */
     protected function typeText(Fluent $column)
     {
-        $colLength = ($column->length ? $column->length : 16369);
+        $colLength = ($column->length ? $column->length : 16000);
 
         return "varchar($colLength)";
     }
@@ -538,6 +538,17 @@ class DB2Grammar extends Grammar
      * @return string
      */
     protected function typeSmallInteger(Fluent $column)
+    {
+        return 'smallint';
+    }
+
+    /**
+     * Create the column definition for a tiny integer type.
+     *
+     * @param  \Illuminate\Support\Fluent  $column
+     * @return string
+     */
+    protected function typeTinyInteger(Fluent $column)
     {
         return 'smallint';
     }

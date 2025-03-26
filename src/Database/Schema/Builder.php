@@ -21,7 +21,7 @@ class Builder extends \Illuminate\Database\Schema\Builder
      */
     public function hasTable($table)
     {
-        $sql = $this->grammar->compileTableExists();
+        $sql = $this->grammar->compileTableExists($this->connection->getDefaultSchema(), $table);
         $schemaTable = explode(".", $table);
 
         if (count($schemaTable) > 1) {
@@ -102,6 +102,6 @@ class Builder extends \Illuminate\Database\Schema\Builder
             return call_user_func($this->resolver, $table, $callback);
         }
 
-        return new \RbSerin\DB2\Database\Schema\Blueprint($table, $callback);
+        return new \RbSerin\DB2\Database\Schema\Blueprint($this->connection, $table, $callback);
     }
 }
