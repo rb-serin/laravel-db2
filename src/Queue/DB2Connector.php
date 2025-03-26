@@ -1,6 +1,6 @@
 <?php
 
-namespace Cooperl\DB2\Queue;
+namespace RbSerin\DB2\Queue;
 
 use Illuminate\Queue\Connectors\DatabaseConnector;
 

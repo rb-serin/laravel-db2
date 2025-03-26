@@ -1,6 +1,6 @@
 <?php
 
-namespace Cooperl\DB2\Database\Schema;
+namespace RbSerin\DB2\Database\Schema;
 
 use Closure;
 use Illuminate\Database\Schema\Blueprint;
@@ -8,7 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 /**
  * Class Builder
  *
- * @package Cooperl\DB2\Database\Schema
+ * @package RbSerin\DB2\Database\Schema
  */
 class Builder extends \Illuminate\Database\Schema\Builder
 {
@@ -94,7 +94,7 @@ class Builder extends \Illuminate\Database\Schema\Builder
      * @param string $table
      * @param \Closure $callback
      *
-     * @return \Cooperl\DB2\Database\Schema\Blueprint
+     * @return \RbSerin\DB2\Database\Schema\Blueprint
      */
     protected function createBlueprint($table, Closure $callback = null)
     {
@@ -102,6 +102,6 @@ class Builder extends \Illuminate\Database\Schema\Builder
             return call_user_func($this->resolver, $table, $callback);
         }
 
-        return new \Cooperl\DB2\Database\Schema\Blueprint($table, $callback);
+        return new \RbSerin\DB2\Database\Schema\Blueprint($table, $callback);
     }
 }

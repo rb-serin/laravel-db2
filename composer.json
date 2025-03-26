@@ -1,5 +1,5 @@
 {
-    "name": "cooperl/laravel-db2",
+    "name": "rb-serin/laravel-db2",
     "description": "laravel-db2 is a simple DB2 service provider for Laravel. It provides DB2 Connection by extending the Illuminate Database component of the laravel framework.",
     "keywords": [
         "laravel",
@@ -16,20 +16,20 @@
     }
     ],
     "require": {
-        "php": "^7.3|^8.0",
-        "illuminate/database": "^8.0"
+        "php": "^7.3|^8.3",
+        "illuminate/database": "^12.0"
     },
     "require-dev": {
     },
     "autoload": {
     "psr-4": {
-        "Cooperl\\DB2\\": "src/"
+        "RbSerin\\DB2\\": "src/"
     }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Cooperl\\DB2\\DB2ServiceProvider"
+                "RbSerin\\DB2\\DB2ServiceProvider"
             ]
         }
     }

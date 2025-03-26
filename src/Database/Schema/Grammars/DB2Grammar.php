@@ -1,6 +1,6 @@
 <?php
 
-namespace Cooperl\DB2\Database\Schema\Grammars;
+namespace RbSerin\DB2\Database\Schema\Grammars;
 
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Fluent;

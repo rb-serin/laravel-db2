@@ -1,11 +1,11 @@
 <?php
 
-namespace Cooperl\DB2\Database\Connectors;
+namespace RbSerin\DB2\Database\Connectors;
 
 /**
  * Class ODBCZOSConnector
  *
- * @package Cooperl\DB2\Database\Connectors
+ * @package RbSerin\DB2\Database\Connectors
  */
 class ODBCZOSConnector extends ODBCConnector
 {
