@@ -53,13 +53,21 @@ class DB2Grammar extends Grammar
     }
 
     /**
-     * Compile the query to determine the list of tables.
+     * Compile the query to determine if the given table exists.
      *
-     * @return string
+     * @param  string|null  $schema
+     * @param  string  $table
+     * @return string|null
      */
-    public function compileTableExists()
+    public function compileTableExists($schema, $table)
     {
-        return 'select * from information_schema.tables where table_schema = upper(?) and table_name = upper(?)';
+        //return 'select * from information_schema.tables where table_schema = upper(?) and table_name = upper(?)';
+        return sprintf(
+            'select 1 from information_schema.tables where '
+                . "table_schema = %s and table_name = %s and table_type in ('BASE TABLE', 'SYSTEM VERSIONED') as `exists`",
+            $schema ? $this->quoteString($schema) : 'schema()',
+            $this->quoteString($table)
+        );
     }
 
     /**

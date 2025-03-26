@@ -112,6 +112,7 @@ class DB2Connection extends Connection
             $defaultGrammar->setOffsetCompatibilityMode($this->config['offset_compatibility_mode']);
         }
 
+        return $this->withTablePrefix($defaultGrammar);
         return $this;
     }
 
@@ -127,7 +128,7 @@ class DB2Connection extends Connection
                 $defaultGrammar = $this->withTablePrefix(new DB2ExpressCGrammar);
                 break;
             default:
-                $defaultGrammar = $this->withTablePrefix(new SchemaGrammar);
+                $defaultGrammar = $this->withTablePrefix(new SchemaGrammar($this));
                 break;
         }
 
@@ -151,5 +152,12 @@ class DB2Connection extends Connection
         }
 
         return $defaultProcessor;
+    }
+
+    public function withTablePrefix(\RbSerin\DB2\Database\Schema\Grammars\DB2Grammar $grammar)
+    {
+        $grammar->setTablePrefix($this->tablePrefix);
+
+        return $grammar;
     }
 }
