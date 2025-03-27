@@ -4,10 +4,18 @@
 [![Latest Unstable Version](https://poser.pugx.org/rb-serin/laravel-db2/v/unstable)](https://poser.pugx.org/rb-serin/laravel-db2)
 [![License](https://poser.pugx.org/rb-serin/laravel-db2/license)](h[ttps://packagist.org/packages/cooperl/laravel-db2](https://poser.pugx.org/rb-serin/laravel-db2))
 
+Forked from [cooperl/laravel-db2](https://github.com/cooperl22/laravel-db2)
+
+Laravel 12 compatible (no minor versions because Illuminate\Database changes.
+
+Fixed broken migrations.
+
+
+Help very much appreciated.
+
+---
 laravel-db2 is a simple DB2 service provider for Laravel.
 It provides DB2 Connection by extending the Illuminate Database component of the laravel framework.
-
-Forked from [cooperl/laravel-db2](https://github.com/cooperl22/laravel-db2)
 
 ---
 
