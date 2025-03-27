@@ -10,7 +10,6 @@ use RbSerin\DB2\Database\Schema\Builder;
 use RbSerin\DB2\Database\Query\Processors\DB2Processor;
 use RbSerin\DB2\Database\Query\Processors\DB2ZOSProcessor;
 use RbSerin\DB2\Database\Query\Grammars\DB2Grammar as QueryGrammar;
-use RbSerin\DB2\Database\Query\Builder as QueryBuilder;
 use RbSerin\DB2\Database\Schema\Grammars\DB2Grammar as SchemaGrammar;
 use RbSerin\DB2\Database\Schema\Grammars\DB2ExpressCGrammar;
 
@@ -96,18 +95,6 @@ class DB2Connection extends Connection
         }
 
         return new Builder($this);
-    }
-
-    /**
-     * Get a new query builder instance.
-     *
-     * @return \Illuminate\Database\Query\Builder
-     */
-    public function query()
-    {
-        return new QueryBuilder(
-            $this, $this->getQueryGrammar(), $this->getPostProcessor()
-        );
     }
 
     /**
