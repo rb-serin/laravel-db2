@@ -125,7 +125,7 @@ class DB2Connection extends Connection
             $defaultGrammar->setOffsetCompatibilityMode($this->config['offset_compatibility_mode']);
         }
 
-        return $this->withTablePrefix($defaultGrammar);
+        return $defaultGrammar->setTablePrefix($this->tablePrefix);
     }
 
     /**
@@ -137,14 +137,14 @@ class DB2Connection extends Connection
     {
         switch ($this->config['driver']) {
             case 'db2_expressc_odbc':
-                $defaultGrammar = $this->withTablePrefix(new DB2ExpressCGrammar);
+                $defaultGrammar = new DB2ExpressCGrammar();
                 break;
             default:
-                $defaultGrammar = $this->withTablePrefix(new SchemaGrammar($this));
+                $defaultGrammar = new SchemaGrammar($this);
                 break;
         }
 
-        return $defaultGrammar;
+        return $defaultGrammar->setTablePrefix($this->tablePrefix);
     }
 
     /**
@@ -166,10 +166,4 @@ class DB2Connection extends Connection
         return $defaultProcessor;
     }
 
-    public function withTablePrefix(\Illuminate\Database\Grammar $grammar)
-    {
-        $grammar->setTablePrefix($this->tablePrefix);
-
-        return $grammar;
-    }
 }
