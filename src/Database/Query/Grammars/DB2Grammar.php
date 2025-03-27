@@ -4,6 +4,7 @@ namespace RbSerin\DB2\Database\Query\Grammars;
 
 use Illuminate\Database\Query\Grammars\Grammar;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class DB2Grammar
@@ -113,7 +114,7 @@ class DB2Grammar extends Grammar
         $columns = (!empty($components['columns']) ? $components['columns'] . ', ' : 'select');
 
         if ($columns == 'select *, ' && $query->from) {
-            $columns = 'select ' . $this->tablePrefix . $query->from . '.*, ';
+            $columns = 'select ' . DB::getTablePrefix() . $query->from . '.*, ';
         }
 
         $components['columns'] = $this->compileOver($orderings, $columns);
